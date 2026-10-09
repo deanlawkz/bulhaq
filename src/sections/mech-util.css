@@ -1,0 +1,40 @@
+/* Общее для страницы «Механизмы» — «Хартия Степи» */
+.mech { --c: var(--gold); }
+.mech-head { display: flex; flex-direction: column; gap: 18px; margin-bottom: clamp(36px, 6vh, 72px); padding-top: 22px; border-top: 1px solid var(--rule); position: relative; }
+.mech-head::before { content: ''; position: absolute; left: 0; top: -3px; width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
+.mech-h { max-width: 20ch; font-weight: 300; }
+.mech-lead { max-width: 60ch; color: var(--ivory-2); margin: 0; }
+.mech-text p { color: var(--ivory-2); max-width: 64ch; margin: 0 0 1em; font-size: 16.5px; line-height: 1.7; }
+.mech-text p:last-child { margin-bottom: 0; }
+.mech-collapse > .mech-text:first-child p { color: var(--ivory); }
+.mech-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.55s var(--ease); }
+.mech-more__in { overflow: hidden; min-height: 0; visibility: hidden; transition: visibility 0s 0.55s; }
+.mech-more.is-open { grid-template-rows: 1fr; }
+.mech-more.is-open .mech-more__in { visibility: visible; transition-delay: 0s; padding-top: 1em; }
+.mech-toggle {
+  margin-top: 12px; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 8px 0;
+  background: none; border: 0; border-bottom: 1px solid var(--rule); border-radius: 0;
+  font: 500 14px var(--f-mono);  color: var(--gold);
+  transition: color 0.3s, border-color 0.3s;
+}
+.mech-toggle:hover { color: var(--gold-2); border-bottom-color: var(--gold); }
+.mech-toggle__i { width: 7px; height: 7px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform 0.4s var(--ease); }
+.mech-toggle[aria-expanded='true'] .mech-toggle__i { transform: translateY(2px) rotate(-135deg); }
+.mech svg { overflow: visible; }
+.mech-tab {
+  min-height: 44px; padding: 8px 2px; margin-right: 26px; background: none; border: 0; border-bottom: 1px solid var(--rule-2); border-radius: 0;
+  font: 400 17px var(--f-display); color: var(--ivory-3); transition: color 0.3s, border-color 0.3s;
+}
+.mech-tab:hover { color: var(--ivory); }
+.mech-tab[aria-selected='true'] { color: var(--gold-2); border-bottom-color: var(--gold); }
+@media (prefers-reduced-motion: reduce) {
+  .mech *, .mech *::before, .mech *::after { animation: none !important; }
+}
+
+/* v3 typography: sans */
+.mech-h, .mech-hero__title, .mech-close__motto, .mech-spread__name, .mech-map__q, .mech-life__ttl, .mech-yurt__ptitle, .mech-env__name { letter-spacing: -0.03em; line-height: 1.08; font-weight: 350; }
+.mech-hero__title, .mech-close__motto, .mech-spread__name { letter-spacing: -0.035em; line-height: 1.02; }
+.mech-hero__quote, .mech-close__tr, .mech-stamp__res, .mech-spread__sub, .mech-env__sub, .mech-life__ttl { font-weight: 450; letter-spacing: -0.005em; }
+.mech-row__n, .mech-map__n, .mech-yurt__n, .mech-baton__cap span, .mech-env__count, .mech-env__n, .mech-yurt__pnum, .mech-spread__tag, .mc-axis, .mech-curves__legend b, .mech-baton__med b { font-variant-numeric: tabular-nums; font-weight: 500; letter-spacing: 0; }
+.mech-env__n, .mech-yurt__pnum, .mech-spread__tag, .mech-env__drag, .mech-hero__cue, .mech-map__lbl, .mech-map__hint, .mech-baton__node em { font-size: 15px; font-weight: 500; }
+.mech-row__txt em { font-weight: 400; }

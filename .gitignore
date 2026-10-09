@@ -1,0 +1,7 @@
+node_modules
+dist
+dist-single
+harness-*.html
+src/_harness_*.ts
+/*.mjs
+scripts/_*

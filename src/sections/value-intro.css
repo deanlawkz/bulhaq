@@ -1,0 +1,20 @@
+.vintro-in { display: flex; flex-direction: column; gap: clamp(48px, 9vh, 110px); }
+.vintro-head { display: flex; align-items: center; gap: 20px; }
+.vintro-head .divider { flex: 1; }
+.vintro-text { display: grid; gap: 8px; max-width: 46rem; }
+@media (min-width: 900px) { .vintro-text { margin-left: 25%; } }
+.vintro-p { margin: 0 0 1em; color: var(--ivory-2); font-size: clamp(16px, 1.1vw + 8px, 19px); }
+.vintro-p--first { font-family: var(--f-display); color: var(--ivory); font-size: clamp(21px, 2vw, 30px); line-height: 1.42; font-weight: 350; letter-spacing: -0.02em; }
+.vintro-p--first::first-letter { color: var(--gold-2); }
+.vintro-proverb { margin: 0; padding: clamp(8px, 2vw, 24px) 0; text-align: center; }
+.vintro-proverb .orn-band { max-width: 560px; margin-inline: auto; }
+.vintro-bq { margin: clamp(28px, 5vw, 64px) auto; padding: 0; max-width: 1000px; }
+.vintro-kz {
+  margin: 0; font-family: var(--f-display); font-weight: 300; color: var(--ivory);
+  font-size: clamp(36px, 7vw, 104px); line-height: 1.04; letter-spacing: -0.02em; text-wrap: balance; padding-bottom: .1em;
+}
+.vintro-ru { margin: 22px auto 0; max-width: 36ch; font-family: var(--f-text); color: var(--ivory-2); font-size: clamp(16px, 1.4vw, 20px); }
+.vintro-ru::before { content: '— '; color: var(--gold); }
+.vintro-formula-wrap { display: grid; justify-items: center; gap: 22px; text-align: center; }
+.vintro-formula-wrap .divider { width: 100%; max-width: 900px; }
+.vintro-formula { margin: 0; max-width: 28ch; font-family: var(--f-display); font-weight: 300; color: var(--gold-2); font-size: clamp(24px, 3.4vw, 50px); line-height: 1.18; text-wrap: balance; letter-spacing: -0.02em; }

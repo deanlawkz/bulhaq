@@ -1,0 +1,89 @@
+.norm { position: relative; overflow-x: clip; }
+.norm-bandrow { padding-top: clamp(40px, 8vh, 100px); color: var(--gold); }
+.norm-band { width: 100%; max-width: 760px; height: auto; display: block; margin: 0 auto; opacity: 0.8; }
+.norm-intro { padding: clamp(56px, 10vh, 120px) 0 clamp(20px, 4vh, 48px); }
+.norm-head { display: flex; flex-direction: column; gap: 22px; }
+.norm-lead { max-width: 46ch; margin: 0; font-weight: 350; }
+
+/* ---------- спираль ---------- */
+.norm-spiralsec { padding: clamp(24px, 6vh, 60px) 0 clamp(60px, 10vh, 120px); }
+.norm-spiralstage { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center; }
+.norm-spiralwrap { position: relative; width: min(100%, 520px); margin: 0 auto; aspect-ratio: 1; }
+.norm-spiral { width: 100%; height: 100%; overflow: visible; }
+.norm-ring { fill: none; stroke: var(--rule-2); stroke-width: 1; stroke-dasharray: 2 6; transition: stroke 0.6s; }
+.norm-ring.is-on { stroke: var(--rule); }
+.norm-spiral__ghost { fill: none; stroke: var(--rule-2); stroke-width: 1; }
+.norm-spiral__path { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.norm-node__bg { fill: var(--night); stroke: var(--ivory-3); stroke-width: 1; transition: stroke 0.5s, fill 0.5s; }
+.norm-node__t { font-family: var(--f-mono); font-size: 14px; fill: var(--ivory-3); transition: fill 0.5s; font-weight: 500; font-variant-numeric: tabular-nums; }
+.norm-node.is-on .norm-node__bg { stroke: var(--gold); fill: var(--night-3); }
+.norm-node.is-on .norm-node__t { fill: var(--gold-2); }
+.norm-rosewrap { position: absolute; left: 50%; top: 50%; width: 21.5%; transform: translate(-50%, -50%); color: var(--gold); text-align: center; }
+.norm-rose { display: block; width: 100%; height: auto; }
+.norm-rosewrap__t { position: absolute; left: 50%; top: calc(100% + 6px); transform: translateX(-50%); white-space: nowrap; font-family: var(--f-display); font-size: 14px; color: var(--ivory-3); transition: color 0.8s; }
+.norm-rosewrap.is-on .norm-rosewrap__t { color: var(--gold-2); }
+
+.norm-steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.norm-step { display: grid; grid-template-columns: 3.2ch 1fr; gap: 16px; align-items: baseline; padding: 20px 4px; border-bottom: 1px solid var(--rule); opacity: 0.4; transition: opacity 0.6s, padding 0.6s var(--ease); }
+.norm-step__n { color: var(--ivory-3); font-size: 14px; transition: color 0.5s; }
+.norm-step__t { font-family: var(--f-display); font-weight: 350; font-size: clamp(18px, 1.9vw, 26px); line-height: 1.25; }
+.norm-step.is-on { opacity: 1; }
+.norm-step.is-on .norm-step__n { color: var(--gold); }
+.norm-step.is-now { padding-left: 14px; box-shadow: inset 2px 0 0 var(--gold); }
+.norm-step:last-child.is-on .norm-step__t { color: var(--gold-2); }
+
+@media (min-width: 900px) {
+  .norm-spiralsec--pinned { padding: 0; }
+  .norm-spiralsec--pinned .norm-spiralstage { min-height: 100vh; min-height: 100svh; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 80px); padding-top: 70px; }
+  .norm-spiralsec--pinned .norm-spiralwrap { width: min(100%, 64vh, 560px); }
+}
+
+/* ---------- два потока ---------- */
+.norm-flowsec { padding: clamp(60px, 10vh, 120px) 0; }
+.norm-flowsec__in { display: flex; flex-direction: column; gap: 36px; }
+.norm-flow__lead { max-width: 64ch; margin: 0; color: var(--ivory-2); }
+.norm-flow { display: grid; grid-template-columns: 1fr; align-items: stretch; }
+.norm-flow__streams { display: flex; flex-direction: column; gap: 28px; }
+.norm-stream { border-top: 1px solid var(--rule); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.norm-stream p { margin: 0; color: var(--ivory-2); }
+.norm-stream__tag { color: var(--gold); font-size: 14px; }
+.norm-stream__h { font-family: var(--f-display); font-weight: 400; font-size: clamp(22px, 2.4vw, 32px); letter-spacing: -0.02em; }
+.norm-flow__mid { position: relative; height: 150px; }
+.norm-flow__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.norm-flow__svg--h { display: none; }
+.norm-flow__svg path { fill: none; vector-effect: non-scaling-stroke; }
+.nf-base { stroke: var(--rule-2); stroke-width: 1; }
+.nf-live { stroke: var(--gold); stroke-width: 1.4; stroke-dasharray: 1; }
+.norm-flow.is-static .nf-live { stroke-dashoffset: 0; }
+.norm-experience { text-align: left; display: flex; flex-direction: column; gap: 10px; padding: 18px 0 0 22px; border-top: 1px solid var(--gold); position: relative; }
+.norm-experience::before { content: ''; position: absolute; left: -4px; top: -5px; width: 9px; height: 9px; border: 1px solid var(--gold); background: var(--night); transform: rotate(45deg); }
+.norm-experience__t { font-family: var(--f-display); font-weight: 350; font-size: clamp(26px, 3vw, 44px); line-height: 1.1; letter-spacing: -0.02em; }
+.norm-experience__s { font-size: 14px; color: var(--ivory-2); max-width: 36ch; }
+@media (min-width: 900px) {
+  .norm-flow { grid-template-columns: minmax(0, 5fr) minmax(90px, 2fr) minmax(0, 4fr); }
+  .norm-flow__mid { height: auto; min-height: 280px; }
+  .norm-flow__svg--v { display: none; } .norm-flow__svg--h { display: block; }
+  .norm-flow__end { display: flex; align-items: center; }
+  .norm-experience { width: 100%; border-top: 0; border-left: 0; padding: 0 0 0 4px; }
+  .norm-experience::before { left: -9px; top: calc(50% - 5px); }
+}
+.norm-self { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; padding: clamp(24px, 3vw, 40px) 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.norm-self__orn { width: 72px; color: var(--gold); display: block; }
+.norm-self__orn svg { width: 100%; height: auto; }
+.norm-self .eyebrow { margin: 0; }
+.norm-self__t { margin: 8px 0 0; font-family: var(--f-display); font-weight: 350; font-size: clamp(19px, 2.1vw, 30px); line-height: 1.35; letter-spacing: -0.02em; }
+@media (max-width: 520px) { .norm-self { grid-template-columns: 1fr; gap: 14px; } .norm-self__orn { width: 56px; } }
+
+/* ---------- указатель механизмов ---------- */
+.norm-teaser { padding: clamp(60px, 10vh, 120px) 0 clamp(80px, 14vh, 160px); }
+.norm-teaser__in { display: flex; flex-direction: column; gap: 28px; }
+.norm-teaser__p { max-width: 70ch; margin: 0; font-size: 15px; color: var(--ivory-2); }
+.norm-index { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.norm-index__grp { padding: 22px 0; border-bottom: 1px solid var(--rule); display: grid; gap: 12px; }
+@media (min-width: 900px) { .norm-index__grp { grid-template-columns: 220px 1fr; gap: 32px; } }
+.norm-index__lab { color: var(--gold); font-size: 14px; letter-spacing: 0; padding-top: 0.6em; font-weight: 500; }
+.norm-index__list { margin: 0; font-family: var(--f-display); font-weight: 350; font-size: clamp(21px, 2.6vw, 36px); line-height: 1.5; letter-spacing: -0.02em; }
+.norm-name { white-space: nowrap; }
+.norm-dot { display: inline-block; width: 6px; height: 6px; margin: 0 0.6em; border: 1px solid var(--gold); transform: rotate(45deg) translateY(-0.2em); vertical-align: middle; }
+.norm-teaser__cta { display: flex; margin-top: 8px; }
+.norm-cta { font-size: clamp(16px, 1.5vw, 20px); padding: 18px 30px; gap: 14px; min-height: 56px; }

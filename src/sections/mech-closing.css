@@ -1,0 +1,11 @@
+.mech-close { min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
+.mech-close__in { position: relative; z-index: 1; display: flex; flex-direction: column; gap: clamp(20px, 4vh, 40px); }
+.mech-close__band { width: min(420px, 80%); height: auto; color: var(--gold); opacity: 0.7; }
+.mech-close__motto { font-size: clamp(32px, 6.4vw, 108px); line-height: 1.02; letter-spacing: -0.025em; display: flex; flex-direction: column; gap: 0.06em; font-weight: 300; }
+.mech-close__l1, .mech-close__l2 { display: block; }
+.mech-close__l2 { color: var(--gold-2); }
+.mech-close__tr { font: 400 clamp(18px, 2vw, 30px)/1.4 var(--f-display); color: var(--ivory-2); max-width: 30ch; margin: 0; padding-left: 22px; border-left: 1px solid var(--gold); }
+.mech-close__cta { margin-top: 12px; gap: 16px; }
+.mech-close__artwrap { position: absolute; left: 50%; top: 50%; width: 120vmin; height: 120vmin; margin: -60vmin 0 0 -60vmin; pointer-events: none; color: var(--gold); opacity: 0.22; }
+.mech-close__art { width: 100%; height: 100%; }
+@media (max-width: 600px) { .mech-close__motto { font-size: 10.5vw; } }

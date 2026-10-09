@@ -1,0 +1,38 @@
+.vconst-head { display: flex; flex-direction: column; gap: 18px; margin-bottom: clamp(32px, 5vw, 72px); border-top: 1px solid var(--rule); padding-top: 24px; }
+.vconst-grid { display: grid; gap: clamp(36px, 6vw, 96px); grid-template-columns: 1fr; align-items: start; }
+.vconst-grid > * { min-width: 0; }
+@media (min-width: 960px) { .vconst-grid { grid-template-columns: 6fr 6fr; } .vconst-left { position: sticky; top: 100px; } }
+.vconst-mapcard { display: flex; flex-direction: column; gap: 18px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 20px 0; }
+.vconst-maphead { display: flex; align-items: center; gap: 16px; }
+.vconst-legend { margin: 0; font-size: 14px; color: var(--ivory-2); line-height: 1.5; }
+.vconst-count { font-family: var(--f-display); font-size: 1.6em; color: var(--accent); margin-right: 4px; }
+.vconst-map { display: grid; grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); border-top: 1px solid var(--rule-2); border-left: 1px solid var(--rule-2); }
+.vconst-cell {
+  --on: 0; position: relative; display: grid; place-items: center; min-width: 0; min-height: 52px; padding: 14px 0 8px; margin: 0; border-radius: 0;
+  font-family: var(--f-mono); font-size: 14px; color: var(--ivory-3); background: transparent; border: 0;
+  border-right: 1px solid var(--rule-2); border-bottom: 1px solid var(--rule-2); font-variant-numeric: tabular-nums;}
+.vconst-cell::before { content: ''; position: absolute; left: 50%; bottom: 5px; width: calc(var(--d, 0) * 2px); height: 1px; transform: translateX(-50%); background: var(--ivory-3); opacity: .6; }
+.vconst-cell--pre { grid-column: span 2; font-size: 14px; letter-spacing: 0; font-weight: 500; }
+.vconst-cell.is-lit { color: var(--ivory); cursor: pointer; font-weight: 500; transition: background .3s; }
+.vconst-cell.is-lit::before { display: none; }
+.vconst-mark { position: absolute; left: 50%; top: 8px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--accent); transform: scale(var(--on)); }
+.vconst-cell.is-lit::after { content: ''; position: absolute; left: 20%; right: 20%; bottom: 4px; height: 1px; background: var(--accent); transform: scaleX(var(--on)); }
+.vconst-cell.is-lit:hover, .vconst-cell.is-sel { background: rgba(239, 232, 216, 0.06); color: var(--gold-2); }
+.vconst-readout { margin: 0; min-height: 3.2em; font-size: 15px; color: var(--ivory-2); }
+.vconst-readout b { color: var(--gold-2); font-family: var(--f-mono); font-weight: 500; font-variant-numeric: tabular-nums; }
+.vconst-readout span { color: var(--ivory-3); }
+.vconst-arts { margin: 0; font-family: var(--f-mono); font-size: 14px; letter-spacing: 0; padding-top: 14px; border-top: 1px solid var(--rule-2); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+.vconst-story { grid-template-columns: minmax(0, 1fr); list-style: none; margin: 0; padding: 0 0 0 40px; position: relative; display: grid; gap: clamp(28px, 4vw, 52px); }
+.vconst-story::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--rule-2); }
+.vconst-line { position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; transform-origin: 50% 0; background: var(--gold); }
+.vconst-item { position: relative; }
+.vconst-item p { overflow-wrap: anywhere; margin: 0; color: var(--ivory-2); max-width: 60ch; }
+.vconst-item:first-of-type p { font-family: var(--f-display); font-size: clamp(19px, 1.6vw, 24px); line-height: 1.45; color: var(--ivory); font-weight: 350; }
+.vconst-dot { --on: 0; position: absolute; left: -40px; top: 8px; width: 15px; height: 15px; border-radius: 50%; border: 1px solid var(--gold); background: var(--night); z-index: 1; }
+.vconst-dot::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--gold); transform: scale(var(--on)); }
+.vconst-concl { margin-top: clamp(56px, 10vw, 140px); padding: clamp(32px, 5vw, 80px) 0; text-align: center; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.vconst-concl-k { display: block; margin-bottom: 24px; }
+.vconst-concl-t { margin: 0 auto; max-width: 26ch; font-family: var(--f-display); font-weight: 300; font-size: clamp(28px, 4.4vw, 68px); line-height: 1.14; letter-spacing: -.015em; text-wrap: balance; color: var(--ivory); }
+.vconst-concl-t::before { content: '«'; color: var(--gold); margin-right: .08em; }
+.vconst-concl-t::after { content: '»'; color: var(--gold); margin-left: .05em; }

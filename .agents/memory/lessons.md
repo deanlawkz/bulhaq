@@ -1,0 +1,24 @@
+# Уроки и грабли
+
+- pdftotext разрывает строки посреди фраз и иногда вставляет пробелы внутри слов в разрядке заголовков («Б ҰЛ Х А Қ П А ?»). Склеивай абзацы и убирай разрядку, но слова не меняй.
+- Колонтитулы на каждой странице («ХА Қ», «Х А Л Ы Қ Т Ы Қ ...», «Концепция продвижения ценностей Конституции», номер страницы) — это не контент.
+- `h()`: CSS-переменные можно задавать и атрибутом `'--c': '#fff'`, и внутри `style: { '--c': '#fff', opacity: 0.5 }` (оркестратор).
+- h(): CSS-переменные передавать как атрибут верхнего уровня `{ '--c': color }`, а не внутри `style: {...}` (типы не пропустят).
+- revealWords/splitWords оборачивают слова в .w > span: градиентный текст (background-clip) нужно вешать на `.w > span`, а не на родителя, иначе слова невидимы.
+- scripts/shot.mjs иногда падает «Execution context was destroyed» при первом запуске после новых файлов — просто повторить.
+- h() не принимает CSS-переменные внутри style-объекта в типах (ошибки TS) — передавай '--x' как отдельный атрибут: h('div', { '--c': val }).
+- Колоду карточек строй через grid-area:1/1 (высота = самой высокой карточки), а не absolute; у нижних карточек не используй opacity<1 — просвечивает текст, делай filter: brightness.
+- src/pages/home.ts временно правят несколько агентов одновременно и затирают друг друга — для самопроверки делай свой harness-*.html + src/_harness_*.ts (как harness-e) и снимай `node scripts/shot.mjs 'harness-x.html' out.png 1440 Y`; потом удаляй. `h()` не принимает CSS-переменные внутри style: {} (только top-level '--x' attr).
+- h('svg', {html}) создаёт HTMLUnknownElement, а не SVG — SVG вставляй через `h('span', { html: '<svg>…</svg>' })`. CSS `stroke-dashoffset` из класса перебивает атрибут: для JS-анимации ставь `el.style.strokeDashoffset`.
+- Для pin+scrub на десктопе и статики на мобайле удобно `gsap.matchMedia()` + `scope.add(() => mm.revert())`; класс режима (`--pinned`) добавляй/снимай внутри колбэка.
+- h('section.cls#id') ломается: id должен идти сразу после тега — h('section#id.cls'); иначе id попадает в className.
+- ScrollTrigger pin:true (horizontalScroll) падает, если секция ещё не в DOM (insertBefore null): вызывай horizontalScroll в requestAnimationFrame после монтирования страницы (см. dimensions.ts).
+- flex-basis в колонке задаёт высоту: при смене flex-direction на column сбрасывай flex у детей.
+- GSAP from()/fromTo на элементах с CSS `transition: all/opacity/transform` даёт «залипшие» полупрозрачные состояния: сужай transition и ставь clearProps. Inline-opacity от gsap также перебивает классы вроде .is-dim.
+- background-clip:text (.grad-text) ломается, если разбить текст на inline-block (splitWords/revealWords) — для градиентных заголовков используй reveal(), не revealWords().
+- Первый запуск vite в Playwright может перезагрузить страницу (оптимизация зависимостей) — прогревай и делай reload перед сценарием. fullPage-скриншот на десктопе иногда белый.
+- `h('section.cls#id')` неверно: id должен идти сразу после тега — `h('section#id.cls')`, иначе id попадает в имя класса.
+- `horizontalScroll()` (pin) падает, если section ещё не в DOM (`insertBefore` of null): сначала `host.append(section)`, потом pin; и собирай страницу последовательно (root.append(main) → main.append(секция)), иначе порядок ScrollTrigger-ов (и позиции после pin-spacer) сломается.
+- Grid `1fr` = `minmax(auto,1fr)`: элементы с aspect-ratio+min-height или длинными словами раздувают колонку на мобильном → используй `minmax(0,1fr)`. Инлайн `left/top` в % на элементе с position:relative даёт горизонтальный скролл — передавай через CSS-переменные и применяй только в media.
+- strokeDasharray=1 (pathLength=1) + dashoffset=1 рисует точку (round cap) в конце пути: добавляй visibility:hidden при прогрессе 0.
+- Вложенные `100vh` sticky-секции со scrub: высота секции 220–240vh, внутри `position: sticky; height: 100svh`.

@@ -1,0 +1,68 @@
+.const__grid { display: grid; gap: clamp(28px, 5vw, 80px); align-items: center; grid-template-columns: 1fr; }
+.const__grid > * { min-width: 0; }
+@media (min-width: 980px) { .const__grid { grid-template-columns: minmax(320px, 5fr) 7fr; } }
+.const__modes { gap: 0 !important; }
+.const__mode-text { color: var(--ivory-2); min-height: 7em; margin: 0; max-width: 56ch; }
+.const__detail { padding: 24px 0 0; border: 0; border-top: 1px solid var(--rule); background: none; --c: var(--accent); min-height: 150px; position: relative; }
+.const__detail p { margin: 0 0 10px; }
+.const__dhead { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.const__dhead .kz { font-size: 28px; font-weight: 400; letter-spacing: -0.02em; }
+.const__q { font-family: var(--f-display); font-size: clamp(19px, 1.6vw, 23px); line-height: 1.32; font-weight: 350; }
+.const__image { font-family: var(--f-display); font-size: clamp(22px, 2.1vw, 30px); line-height: 1.15; color: var(--gold-2); }
+.const__small { font-size: 15px; line-height: 1.6; color: var(--ivory-2); }
+.const__go { margin-top: 10px; }
+
+.const__stage { --node: 72px; position: relative; width: min(100%, 680px); aspect-ratio: 1; margin: 0 auto; touch-action: pan-y; }
+.const__lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.const__edge { stroke: rgba(214, 170, 76, 0.09); stroke-width: 0.8; transition: stroke 0.5s, stroke-width 0.5s; }
+.const__edge.on { stroke: rgba(240, 207, 122, 0.55); stroke-width: 1; }
+.const__edge--pair { stroke: rgba(214, 170, 76, 0.16); }
+[data-mode='pairs'] .const__edge { stroke: rgba(214, 170, 76, 0.03); }
+[data-mode='pairs'] .const__edge--pair { stroke: var(--c); stroke-width: 1.2; }
+[data-mode='pairs'] .const__edge.on:not(.const__edge--pair) { stroke: rgba(214, 170, 76, 0.05); }
+.const__spoke { stroke: rgba(239, 232, 216, 0.08); stroke-dasharray: 1 5; transition: stroke 0.4s; }
+.const__spoke.on { stroke: var(--gold-2); }
+[data-mode='pairs'] .const__spoke { stroke: transparent; }
+[data-mode='basis'] .const__spoke { stroke: rgba(214, 170, 76, 0.35); stroke-dasharray: none; }
+
+.const__hub {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 32%; aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-items: center; align-content: center; gap: 4px; text-align: center;
+  transition: opacity 0.6s, scale 0.8s var(--ease);
+}
+.const__rosette { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.55; animation: const-spin 120s linear infinite; }
+@keyframes const-spin { to { rotate: 360deg; } }
+.const__hub img { width: 46%; position: relative; background: var(--night); padding: 6px 8px; }
+.const__hub span { position: relative; font-size: clamp(11px, 1vw, 13px); font-weight: 500; color: var(--gold); background: var(--night); padding: 0 4px; }
+[data-mode='pairs'] .const__hub { opacity: 0.25; scale: 0.8; }
+[data-mode='basis'] .const__hub span { font-size: 0; }
+[data-mode='basis'] .const__hub span::after { content: 'Конституция'; font-size: clamp(11px, 1vw, 13px); }
+
+.const__node {
+  --c: var(--accent);
+  position: absolute; left: 0; top: 0; width: var(--node); padding: 0; border: 0; background: none;
+  display: flex; flex-direction: column; align-items: center; gap: 6px; opacity: 0; scale: 0.3;
+  transition: opacity 0.6s, scale 0.8s var(--ease), filter 0.4s; will-change: transform;
+}
+.const__node::before { content: ''; position: absolute; inset: -10px; } /* увеличенная зона касания */
+.const__node.is-live { opacity: 1; scale: 1; }
+.const__node.is-dim { opacity: 0.3; }
+.const__icon {
+  width: 100%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; background: var(--night);
+  border: 1px solid color-mix(in srgb, var(--c) 60%, transparent);
+  box-shadow: inset 0 0 0 4px var(--night), inset 0 0 0 5px color-mix(in srgb, var(--c) 28%, transparent);
+  transition: transform 0.5s var(--ease), background 0.4s, border-color 0.4s;
+}
+.const__icon img { width: 52%; }
+.const__kz { font-family: var(--f-display); font-weight: 500; font-size: clamp(11px, calc(var(--node) * 0.16), 13px); letter-spacing: 0; white-space: nowrap; color: var(--ivory-2); }
+.const__node:hover .const__icon, .const__node:focus-visible .const__icon, .const__node[aria-pressed='true'] .const__icon {
+  transform: scale(1.1); border-color: var(--c); background: color-mix(in srgb, var(--c) 18%, var(--night));
+}
+.const__node[aria-pressed='true'] .const__kz { color: var(--ivory); }
+.const__dim {
+  --c: var(--accent);
+  position: absolute; left: 0; top: 0; pointer-events: none; text-align: center; max-width: 22%;
+  font-family: var(--f-display); font-weight: 500; font-size: clamp(12px, 1.1vw, 14px); line-height: 1.2;
+  color: var(--c); opacity: 0; transition: opacity 0.5s;
+}
+[data-mode='pairs'] .const__dim { opacity: 1; }
