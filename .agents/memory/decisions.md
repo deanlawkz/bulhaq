@@ -10,3 +10,4 @@
 - D8. Уважаем `prefers-reduced-motion`: все анимации через `motion.ts`, который их упрощает.
 - D9. Новый репозиторий создать нельзя (403 у интеграции) — проект живёт в `course-studio/hak/`.
 - D10. v2 «Хартия Степи»: отказ от лендинговой стилистики (капсулы, стекло, градиенты, Unbounded). Антиква + золото/небесно-голубой флага + казахский орнамент. См. design.md.
+- D11. Продакшен: репозиторий deanlawkz/bulhaq, ветка main → GitHub Actions → GitHub Pages → https://bulhaq.kz (public/CNAME). DNS у hoster.kz: 4×A на 185.199.108–111.153, www CNAME deanlawkz.github.io. Почта (MX/mail) остаётся на hoster.kz. Разработка теперь здесь, course-studio/hak — архив.
